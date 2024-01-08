@@ -1,5 +1,10 @@
 # my_shopmall
 
+## Project Description
+‘’‘
+vue project pratice
+’‘’
+
 ## Project setup
 ```
 npm install
