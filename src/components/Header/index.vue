@@ -26,8 +26,8 @@
     <!--头部第二行 搜索区域-->
     <div class="bottom">
       <h1 class="logoArea">
-        <router-link class="logo" to="/home">
-          <img src="./images/logo.png" alt="" />
+        <router-link to="/home" class="logo">
+          <img src="./images/logo.png" alt="商城图标" />
         </router-link>
       </h1>
       <div class="searchArea">

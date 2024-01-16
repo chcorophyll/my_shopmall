@@ -8,28 +8,26 @@ export default [
   {
     path: "/home",
     component: Home,
+    meta: {isShowFooter: true},
   },
   {
     path: "*",
     redirect: "/home",
+    meta: {isShowFooter: true},
   },
   {
-    name: "search", // 是当前路由的标识名称
     path: "/search",
     component: Search,
+    meta: {isShowFooter: true},
   },
   {
     path: "/register",
     component: Register,
-    // meta: {
-    //   isHideFooter: true,
-    // },
+    meta: {isShowFooter: false},
   },
   {
     path: "/login",
     component: Login,
-    // meta: {
-    //   isHideFooter: true,
-    // },
+    meta: {isShowFooter: false},
   },
 ];
