@@ -36,6 +36,7 @@
             type="text"
             id="autocomplete"
             class="input-error input-xxlarge"
+            v-model="keyword"
           />
           <button
             class="sui-btn btn-xlarge btn-danger"
@@ -55,7 +56,7 @@ export default {
     name: 'Header',
 
     data() {
-        return {
+        return { keyword: ''
 
         };
     },
@@ -67,7 +68,7 @@ export default {
 
     methods: {
         goSearch() {
-            this.$router.push("/search")
+          this.$router.push('/search/' + this.keyword)
         }
 
     },

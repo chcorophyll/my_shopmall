@@ -6,6 +6,25 @@ import routes from "./routes";
 //使用插件
 Vue.use(VueRouter);
 
+let originPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function(location, resolve, reject) {
+  if (resolve & reject) {
+    originPush.call(this, location, resolve, reject);
+  } else {
+    originPush.call(this, location, () => {}, () => {});
+  }
+};
+let originReplace = VueRouter.prototype.replace;
+VueRouter.prototype.replace = function(location, resolve, reject) {
+  if (resolve & reject) {
+    originReplace.call(this, location, resolve, reject);
+  } else {
+    originReplace.call(this, location, () => {}, () => {});
+  }
+};
+
+
+
 //对外暴露VueRouter类的实例
 let router = new VueRouter({
     //配置路由

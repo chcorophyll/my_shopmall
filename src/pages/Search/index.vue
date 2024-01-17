@@ -1,6 +1,6 @@
 <template>
     <div>
-        Search
+        {{ $route.params.keyword }}
     </div>
 </template>
 
