@@ -13,6 +13,10 @@ import typeNav from "@/components/TypeNav";
 Vue.component(typeNav.name, typeNav);
 
 
+import {reqgetCategoryList} from "@/api"
+reqgetCategoryList();
+
+
 
 new Vue({
   render: h => h(App),
