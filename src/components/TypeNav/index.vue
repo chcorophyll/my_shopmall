@@ -19,7 +19,7 @@
                                 <h3 @mouseenter="changeIndex(index)" :class="{current: currentIndex == index}">
                                     <a href="">{{ c1.categoryName }}</a>
                                 </h3>
-                                <div class="item-list clearfix">
+                                <div class="item-list clearfix" :style="{display: currentIndex == index ? 'block' : 'none'}">
                                     <div class="subitem">
                                         <dl class="fore" v-for="c2, index in c1.categoryChild" :key="c2.categoryId">
                                             <dt>
@@ -189,11 +189,11 @@ export default {
                             }
                         }
 
-                        &:hover {
-                            .item-list {
-                                display: block;
-                            }
-                        }
+                        // &:hover {
+                        //     .item-list {
+                        //         display: block;
+                        //     }
+                        // }
                     }
                 }
             }
