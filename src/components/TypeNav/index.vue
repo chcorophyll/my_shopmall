@@ -1,7 +1,7 @@
 <template>
     <div class="type-nav">
             <div class="container">
-                <div @mouseleave="leaveIndex">
+                <div @mouseleave="leaveShow" @mouseenter="enterShow">
                     <h2 class="all">全部商品分类</h2>
                     <nav class="nav">
                         <a href="###">服装城</a>
@@ -13,7 +13,8 @@
                         <a href="###">有趣</a>
                         <a href="###">秒杀</a>
                     </nav>
-                    <div class="sort" >
+                    <transition name="sort">
+                        <div class="sort" v-show="show">
                         <div class="all-sort-list2" @click="goSearch">
                             <div class="item" v-for="c1, index in categoryList" :key="c1.categoryId">
                                 <h3 @mouseenter="changeIndex(index)" :class="{current: currentIndex == index}">
@@ -36,6 +37,7 @@
                             </div>
                         </div>
                     </div>
+                    </transition>
                 </div>
             </div>
         </div>
@@ -51,12 +53,16 @@ export default {
     data() {
         return {
             currentIndex: -1,
+            show: true,
             
         };
     },
 
     mounted() {
-        this.$store.dispatch("getCategoryList")
+        this.$store.dispatch("getCategoryList");
+        if (this.$route.path != "/home") {
+            this.show = false;
+        }
         
     },
 
@@ -74,8 +80,17 @@ export default {
             }, 
             20,
         ),
-        leaveIndex() {
+        leaveShow() {
             this.currentIndex = -1;
+            if (this.$route.path != "/home") {
+                this.show = false;
+            }
+
+        },
+        enterShow() {
+            if (this.$route.path != "/home") {
+                this.show = true;
+            }
         },
         goSearch(event) {
             // id变小写
@@ -139,6 +154,7 @@ export default {
                 position: absolute;
                 background: #fafafa;
                 z-index: 999;
+            
 
                 .all-sort-list2 {
                     .item {
@@ -220,6 +236,16 @@ export default {
                         // }
                     }
                 }
+            }
+            .sort-enter {
+                height: 0px;
+            }
+
+            .sort-enter-to {
+                height: 461px;
+            }
+            .sort-enter-active { 
+                transition: all 0.5s linear
             }
         }
     }
