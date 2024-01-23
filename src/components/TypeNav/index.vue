@@ -59,7 +59,8 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch("getCategoryList");
+        // move to app component for 1 request
+        // this.$store.dispatch("getCategoryList");
         if (this.$route.path != "/home") {
             this.show = false;
         }
@@ -106,8 +107,12 @@ export default {
                     query.category3Id = category3id;
                 }
                 location.query = query;
+                // if (Object.keys(this.$route.params).length !== 0) {
+                //     location.params = this.$route.params;
+                // }
+                location.params = this.$route.params;
                 this.$router.push(location);
-            }
+          }
         },
         
     },
