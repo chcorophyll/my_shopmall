@@ -18,6 +18,7 @@ import {reqgetCategoryList} from "@/api"
 reqgetCategoryList();
 
 import "@/mock/mockServe";
+import "swiper/css/swiper.css";
 
 
 
