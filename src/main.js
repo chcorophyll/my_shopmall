@@ -17,6 +17,8 @@ Vue.component(typeNav.name, typeNav);
 import {reqgetCategoryList} from "@/api"
 reqgetCategoryList();
 
+import "@/mock/mockServe";
+
 
 
 new Vue({

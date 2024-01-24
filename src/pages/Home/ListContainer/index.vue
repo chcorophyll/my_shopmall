@@ -110,6 +110,8 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
+
 export default {
     name: 'listContainer',
 
@@ -120,7 +122,11 @@ export default {
     },
 
     mounted() {
+        this.$store.dispatch("getBannerList");
         
+    },
+    computed: {
+        ...mapState({bannerList: state => state.home.bannerList}),
     },
 
     methods: {
