@@ -21,25 +21,7 @@
                                 <img :src="list.imgUrl" />
                             </div>
                             <div class="floorBanner">
-                                <div class="swiper-container" ref="floor1Swiper">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" v-for="(carousel, index) in list.carouselList" :key="carousel.id">
-                                            <img :src="carousel.imgUrl">
-                                        </div>
-                                        <!-- <div class="swiper-slide">
-                                            <img src="./images/floor-1-b02.png">
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="./images/floor-1-b03.png">
-                                        </div> -->
-                                    </div>
-                                    <!-- 如果需要分页器 -->
-                                    <div class="swiper-pagination"></div>
-
-                                    <!-- 如果需要导航按钮 -->
-                                    <div class="swiper-button-prev"></div>
-                                    <div class="swiper-button-next"></div>
-                                </div>
+                                <Carousel :list="list.carouselList"></Carousel>
                             </div>
                             <div class="split">
                                 <span class="floor-x-line"></span>
@@ -70,7 +52,7 @@
 </template>
 
 <script> 
-import Swiper from 'swiper';
+
 
 export default {
     name: 'Floor',
@@ -83,23 +65,24 @@ export default {
     },
 
     mounted() {
-        var mySwiper = new Swiper(this.$refs.floor1Swiper, {
-                            loop: true,
-                            pagination: {
-                                el: ".swiper-pagination",
-                                clickable: true,
-                            },
-                            navigation: {
-                                nextEl: ".swiper-button-next",
-                                prevEl: ".swiper-button-prev",
-                            },
-                        })
+        // var mySwiper = new Swiper(this.$refs.floor1Swiper, {
+        //                     loop: true,
+        //                     pagination: {
+        //                         el: ".swiper-pagination",
+        //                         clickable: true,
+        //                     },
+        //                     navigation: {
+        //                         nextEl: ".swiper-button-next",
+        //                         prevEl: ".swiper-button-prev",
+        //                     },
+        //                 })
         
     },
 
     methods: {
         
     },
+    
 };
 </script>
 
