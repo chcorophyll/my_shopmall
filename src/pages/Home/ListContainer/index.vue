@@ -3,7 +3,7 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
+        <div class="swiper-container" ref="mySwiper">
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
@@ -132,7 +132,7 @@ export default {
             handler(newValue, oldValue) {
                 this.$nextTick(
                     () => {
-                        var mySwiper = new Swiper(document.getElementsByClassName("swiper-container"), {
+                        var mySwiper = new Swiper(this.$refs.mySwiper, {
                             loop: true,
                             pagination: {
                                 el: ".swiper-pagination",
