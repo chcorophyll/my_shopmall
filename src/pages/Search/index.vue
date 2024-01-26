@@ -459,7 +459,7 @@ import SearchSelector from "./SearchSelector";
 
 export default {
   name: "Search",
-  
+
   components: {
       SearchSelector
     },
@@ -468,7 +468,9 @@ export default {
     return {};
   },
 
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getSearchInfo", {})
+  },
 
   methods: {},
 };
