@@ -177,6 +177,15 @@ export default {
         this.$store.dispatch("getSearchInfo", this.searchParams); 
     },
   },
+  watch: {
+    $route(newValue, oldValue) {
+        Object.assign(this.searchParams, this.$route.query, this.$route.params);
+        this.getData();
+        this.searchParams.category1Id = '';
+        this.searchParams.category2Id = '';
+        this.searchParams.category3Id = '';
+    },
+  },
 };
 </script>
 
