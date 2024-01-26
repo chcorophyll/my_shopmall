@@ -19,7 +19,19 @@ const mutations = {
     },
 };
 
-const getters = {};
+const getters = {
+    goodsList(state) {
+        return state.searchInfo.goodsList || [];
+    },
+
+    trademarkList(state) {
+        return state.searchInfo.trademarkList || [];
+    },
+
+    attrsList(state) {
+        return state.searchInfo.attrsList || [];
+    },
+};
 
 export default {
     state,
