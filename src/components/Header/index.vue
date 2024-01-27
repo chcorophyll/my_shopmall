@@ -62,8 +62,8 @@ export default {
     },
 
     mounted() {
+      this.$bus.$on("clearKeyWord", () => {this.keyword = '';})
         
-
     },
 
     methods: {
@@ -75,7 +75,7 @@ export default {
           // this.$router.push({name: 'search', params:{this.keyword: this.keyword || undefined}});
           location.query = this.$route.query;
           this.$router.push(location);
-          this.keyword = '';
+          // this.keyword = '';
         }
 
     },

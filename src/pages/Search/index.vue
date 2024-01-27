@@ -11,13 +11,13 @@
             </li>
           </ul>
           <ul class="fl sui-tag">
-            <li class="with-x">手机</li>
-            <li class="with-x">iphone<i>×</i></li>
-            <li class="with-x">华为<i>×</i></li>
-            <li class="with-x">OPPO<i>×</i></li>
+            <li class="with-x" v-if="searchParams.categoryName">{{ searchParams.categoryName }}<i @click="removeCategoryName">×</i></li>
+            <li class="with-x" v-if="searchParams.keyword">{{ searchParams.keyword }}<i @click="removeKeyWord">×</i></li>
+            <li class="with-x" v-if="searchParams.trademark">{{ searchParams.trademark.split(":")[1] }}<i @click="removeTradeMark">×</i></li>
+            <li class="with-x"  v-for="(attrValue, index) in searchParams.props" :key="index">{{ attrValue.split(":")[1] }}<i @click="removeAttrs(index)">×</i></li>
           </ul>
         </div>
-        <SearchSelector></SearchSelector>
+        <SearchSelector @getTradeMark="trademarkInfo" @getAttrs="attrsInfo"></SearchSelector>
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
@@ -176,14 +176,54 @@ export default {
     getData() {
         this.$store.dispatch("getSearchInfo", this.searchParams); 
     },
+    removeCategoryName() {
+        // undefined 比 ‘‘有有不占带宽优势 不传参数
+        // this.searchParams.categoryName = '';
+        // this.searchParams.category1Id = '';
+        // this.searchParams.category2Id = '';
+        // this.searchParams.category3Id = '';
+        this.searchParams.categoryName = undefined;
+        this.searchParams.category1Id = undefined;
+        this.searchParams.category2Id = undefined;
+        this.searchParams.category3Id = undefined;
+        this.getData();
+        // 不加判断 因为params为空也是true
+        this.$router.push({name: 'search', params: this.$route.params});
+    },
+    removeKeyWord() {
+        this.searchParams.keyword = undefined;
+        this.getData();
+        this.$bus.$emit('clearKeyWord');
+        this.$router.push({name: 'search', query: this.$route.query});
+    },
+    trademarkInfo(trademark) {
+        //this.searchParams.trademark = '${trademark.tmId}:${trademark.tmName}';
+        this.searchParams.trademark = `${trademark.tmId}:${trademark.tmName}`;
+        this.getData();
+    },
+    removeTradeMark() {
+        this.searchParams.trademark = undefined;
+        this.getData();
+    },
+    attrsInfo(attr, attrValue) {
+        let prop = `${attr.attrId}:${attrValue}:${attr.attrName}`;
+        if (this.searchParams.props.indexOf(prop) == -1) {
+            this.searchParams.props.push(prop);
+        }
+        this.getData();
+    },
+    removeAttrs(index) {
+        this.searchParams.props.splice(index, 1);
+        this.getData();
+    },
   },
   watch: {
     $route(newValue, oldValue) {
         Object.assign(this.searchParams, this.$route.query, this.$route.params);
         this.getData();
-        this.searchParams.category1Id = '';
-        this.searchParams.category2Id = '';
-        this.searchParams.category3Id = '';
+        this.searchParams.category1Id = undefined;
+        this.searchParams.category2Id = undefined;
+        this.searchParams.category3Id = undefined;
     },
   },
 };
