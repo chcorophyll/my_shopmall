@@ -22,23 +22,11 @@
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
+                <li :class="{active: isOne}" @click="changeOrder('1')">
+                  <a >综合<span v-show="isOne" class="iconfont" :class="{'icon-DOWN': isDown, 'icon-UP': isUp}" ></span></a>
                 </li>
-                <li>
-                  <a href="#">销量</a>
-                </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
-                  <a href="#">价格⬇</a>
+                <li :class="{active: isTwo}" @click="changeOrder('2')">
+                  <a >价格<span v-show="isTwo" class="iconfont" :class="{'icon-DOWN': isDown, 'icon-UP': isUp}" ></span></a>
                 </li>
               </ul>
             </div>
@@ -169,7 +157,19 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['goodsList'])
+    ...mapGetters(['goodsList']),
+    isOne() {
+        return this.searchParams.order.indexOf("1") != -1;
+    },
+    isTwo() {
+        return this.searchParams.order.indexOf("2") != -1;
+    },
+    isUp() {
+        return this.searchParams.order.indexOf("asc") != -1;
+    },
+    isDown() {
+        return this.searchParams.order.indexOf("desc") != -1;
+    },
   },
 
   methods: {
@@ -215,6 +215,19 @@ export default {
     removeAttrs(index) {
         this.searchParams.props.splice(index, 1);
         this.getData();
+    },
+    changeOrder(flag) {
+        let originFlag = this.searchParams.order.split(":")[0];
+        let originSort = this.searchParams.order.split(":")[1];
+        let newOrder = "";
+        if (flag == originFlag) {
+            newOrder = `${originFlag}:${originSort == "desc" ? "asc" : "desc"}`;
+        } else {
+            newOrder = `${flag}:${"desc"}`;
+        }
+        this.searchParams.order = newOrder;
+        this.getData();
+
     },
   },
   watch: {
