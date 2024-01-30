@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <!-- 商品分类导航 -->
-    <TypeNav />
+    <typeNav />
 
     <!-- 主要内容区域 -->
     <section class="con">
@@ -356,7 +356,10 @@
     components: {
       ImageList,
       Zoom
-    }
+    },
+    mounted() {
+      this.$store.dispatch("getGoodInfo", this.$route.params.skuId);
+    },
   }
 </script>
 

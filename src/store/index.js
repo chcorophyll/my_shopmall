@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import home from "./home"
 import search from "./search";
+import detail from "./detail";
 
 
 Vue.use(Vuex);
@@ -20,5 +21,5 @@ Vue.use(Vuex);
 
 // 模块化开发
 export default new Vuex.Store({
-    modules:{home, search}
+    modules:{home, search, detail}
 });
