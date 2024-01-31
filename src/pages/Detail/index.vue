@@ -68,7 +68,8 @@
                 <dd changepirce="0" 
                 :class="{ active: spuSaleAttrValue.isChecked == 1 }"
                 v-for="(spuSaleAttrValue,index) in spuSaleAttr.spuSaleAttrValueList" 
-                :key="spuSaleAttrValue.id">{{ spuSaleAttrValue.saleAttrValueName }}</dd>
+                :key="spuSaleAttrValue.id"
+                @click="changeActive(spuSaleAttrValue, spuSaleAttr.spuSaleAttrValueList)">{{ spuSaleAttrValue.saleAttrValueName }}</dd>
               </dl>
             </div>
             <div class="cartWrap">
@@ -347,6 +348,12 @@
       ...mapGetters(['categoryView', 'skuInfo', 'spuSaleAttrList']),
       skuImageList() {
         return this.skuInfo.skuImageList || [];
+      },
+    },
+    methods: {
+      changeActive(attrValue, attr) {
+        attr.forEach((item) => {item.isChecked = "0";});
+        attrValue.isChecked = "1";
       },
     },
   }
