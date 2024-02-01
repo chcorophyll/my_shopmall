@@ -74,12 +74,12 @@
             </div>
             <div class="cartWrap">
               <div class="controls">
-                <input autocomplete="off" class="itxt">
-                <a href="javascript:" class="plus">+</a>
-                <a href="javascript:" class="mins">-</a>
+                <input autocomplete="off" class="itxt" v-model="skuNum" @change="changeSkuNum">
+                <a href="javascript:" class="plus" @click="skuNum++">+</a>
+                <a href="javascript:" class="mins" @click="skuNum > 1 ? skuNum-- : (skuNum = 1)">-</a>
               </div>
               <div class="add">
-                <a href="javascript:">加入购物车</a>
+                <a @click="addShopCart">加入购物车</a>
               </div>
             </div>
           </div>
@@ -336,6 +336,12 @@
 
   export default {
     name: 'Detail',
+
+    data() {
+      return {
+        skuNum: 1,
+      };
+    },
     
     components: {
       ImageList,
@@ -354,6 +360,25 @@
       changeActive(attrValue, attr) {
         attr.forEach((item) => {item.isChecked = "0";});
         attrValue.isChecked = "1";
+      },
+      changeSkuNum(event) {
+        let current = event.target.value * 1;
+        if (isNaN(current) || current < 1) {
+          this.skuNum = 1;
+        } else {
+          this.skuNum = parseInt(current);
+        }
+      },
+      async addShopCart() {
+        try { 
+        let result = await this.$store.dispatch("addOrUpdateShopCart", {skuId:this.$route.params.skuId, skuNum: this.skuNum});
+        // work, but ugly
+        // this.$router.push({name:'addcartsuccess',query:{skuNum: this.skuNum, skuInfo: this.skuInfo}});
+        sessionStorage.setItem("SKUINFO", JSON.stringify(this.skuInfo));
+        this.$router.push({name:'addcartsuccess',query:{skuNum: this.skuNum}});
+        } catch(error) {
+          alert(error.message);
+        }
       },
     },
   }
