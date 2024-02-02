@@ -37,7 +37,8 @@ const actions = {
         return Promise.all(allPromise);
     },
 
-    async updateAllChecked({dispatch, state}, isChecked) {
+    async 
+    ({dispatch, state}, isChecked) {
         
         let allPromise = [];
         state.cartList[0].cartInfoList.forEach((item) => {
