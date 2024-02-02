@@ -12,5 +12,6 @@ export const reqgetSearchInfo = (params) =>requests({url: "/list", method: "post
 
 export const reqgetGoodsInfo = (skuId) =>requests({url: `/item/${skuId}`, method: "get",});
 
-
 export const reqAddOrUpdateShopCart = (skuId, skuNum) =>requests({url: `/cart/addToCart/${skuId}/${skuNum}`, method: "post",});
+
+export const reqgetCartList = () =>requests({url:'/cart/cartList ',method:'get'});

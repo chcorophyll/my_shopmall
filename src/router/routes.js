@@ -15,6 +15,12 @@ export default [
     meta: {isShowFooter: true}, 
   },
   {
+    path: "/addcartsuccess",
+    name: "addcartsuccess",
+    component: AddCartSuccess ,
+    meta: {isShowFooter: true}, 
+  },
+  {
     path: "/detail/:skuId",
     component: Detail,
     meta: {isShowFooter: true},
