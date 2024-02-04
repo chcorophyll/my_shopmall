@@ -23,3 +23,10 @@ export const requpdateCheckedById = (skuId,isChecked) =>requests({url: `/cart/ch
 export const reqgetCode = (phone) =>requests({url: `/user/passport/sendCode/${phone}`, method: "get",});
 
 export const reqregisterUser = (data) =>requests({url: '/user/passport/register', data, method: "post",});
+
+export const reqloginUser = (data) =>requests({url: '/user/passport/login', data, method: "post",});
+
+export const reqgetUserInfo = ()=>requests({url:'/user/passport/auth/getUserInfo',method:'get'});
+
+export const reqlogoutUser = () =>requests({url: '/user/passport/logout', method: "get",});
+
