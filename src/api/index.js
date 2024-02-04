@@ -20,3 +20,6 @@ export const reqdeleteCartById = (skuId) =>requests({url:`/cart/deleteCart/${sku
 
 export const requpdateCheckedById = (skuId,isChecked) =>requests({url: `/cart/checkCart/${skuId}/${isChecked}`, method: "get",});
 
+export const reqgetCode = (phone) =>requests({url: `/user/passport/sendCode/${phone}`, method: "get",});
+
+export const reqregisterUser = (data) =>requests({url: '/user/passport/register', data, method: "post",});
