@@ -1,6 +1,7 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
 import routes from "./routes";
+import store from "@/store";
 
 
 //使用插件
@@ -38,5 +39,30 @@ let router = new VueRouter({
       return { y: 0 };
     },
   });
+
+  router.beforeEach(async (to, from, next) => {
+    let token = store.state.user.token;
+    let name = store.state.user.userInfo.name;
+    if (token) {
+      if(to.path=="/login"||to.path=='/register') {
+        next('/home');
+      } else {
+        if (name) {
+          next();
+        } else {
+          try {
+            await store.dispatch('getUserInfo');
+            next();
+          } catch (error) {
+            await store.dispatch('logoutUser');
+            next('/login');
+          }
+        }
+        
+      }
+    } else {
+      next();
+    }
+  })
 
   export default router;
