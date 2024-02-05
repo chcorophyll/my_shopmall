@@ -18,8 +18,8 @@ Vue.component(Carousel.name, Carousel);
 Vue.component(Pagination.name, Pagination);
 
 
-import {reqgetCategoryList} from "@/api"
-reqgetCategoryList();
+import * as API from "@/api";
+
 
 import "@/mock/mockServe";
 import "swiper/css/swiper.css";
@@ -29,7 +29,8 @@ import "swiper/css/swiper.css";
 new Vue({
   render: h => h(App),
   beforeCreate() {
-		Vue.prototype.$bus = this //安装全局事件总线
+		Vue.prototype.$bus = this; //安装全局事件总线
+    Vue.prototype.$API = API;
 	},
   router,
   store,

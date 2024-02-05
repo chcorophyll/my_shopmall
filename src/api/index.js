@@ -30,3 +30,8 @@ export const reqgetUserInfo = ()=>requests({url:'/user/passport/auth/getUserInfo
 
 export const reqlogoutUser = () =>requests({url: '/user/passport/logout', method: "get",});
 
+export const reqgetAddressInfo = ()=>requests({url:'/user/userAddress/auth/findUserAddressList',method:'get'});
+
+export const reqgetOrderInfo = ()=>requests({url:'/order/auth/trade',method:'get'});
+
+export const reqSubmitOrder = (tradeNo,data)=>requests({url:`/order/auth/submitOrder?tradeNo=${tradeNo}`,data,method:'post'});
