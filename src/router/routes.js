@@ -5,10 +5,17 @@ import Login from "@/pages/Login";
 import Detail from "@/pages/Detail";
 import AddCartSuccess from "@/pages/AddCartSuccess";
 import ShopCart from "@/pages/ShopCart";
-import Trade from "@/pages/Trade"
+import Trade from "@/pages/Trade";
+import Pay from "@/pages/Pay";
 
 
 export default [
+  {
+    path: "/pay",
+    name: "pay",
+    component: Pay,
+    meta: {isShowFooter: true}, 
+  },
   {
     path: "/trade",
     name: "trade",
