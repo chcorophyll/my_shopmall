@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from "@/router";
 import store  from '@/store';
+import { Button,MessageBox} from 'element-ui';
 
 
 Vue.config.productionTip = false
@@ -16,6 +17,10 @@ import Pagination from '@/components/Pagination';
 Vue.component(typeNav.name, typeNav);
 Vue.component(Carousel.name, Carousel);
 Vue.component(Pagination.name, Pagination);
+
+Vue.component(Button.name,Button);
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
 
 
 import * as API from "@/api";
