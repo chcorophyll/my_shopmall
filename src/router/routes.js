@@ -1,4 +1,4 @@
-import Home from "@/pages/Home";
+// import Home from "@/pages/Home";
 import Search from "@/pages/Search";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
@@ -51,13 +51,27 @@ export default [
     path: "/pay",
     name: "pay",
     component: Pay,
-    meta: {isShowFooter: true}, 
+    meta: {isShowFooter: true},
+    beforeEnter: (to, from, next) => {
+      if (from.path === "/trade") {
+        next();
+      } else {
+        next(false);
+      }
+    }
   },
   {
     path: "/trade",
     name: "trade",
     component: Trade,
     meta: {isShowFooter: true}, 
+    beforeEnter: (to, from, next) => {
+      if (from.path === "/shopcart") {
+        next();
+      } else {
+        next(false);
+      }
+    }
   },
   {
     path: "/shopcart",
@@ -78,7 +92,7 @@ export default [
   },
   {
     path: "/home",
-    component: Home,
+    component: () => import('@/pages/Home'),
     meta: {isShowFooter: true},
   },
   {
