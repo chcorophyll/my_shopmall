@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 import router from "@/router";
 import store  from '@/store';
 import { Button,MessageBox} from 'element-ui';
@@ -28,6 +28,12 @@ import * as API from "@/api";
 
 import "@/mock/mockServe";
 import "swiper/css/swiper.css";
+
+import VueLazyload from 'vue-lazyload';
+import atm from '@/assets/1.gif';
+Vue.use(VueLazyload,{
+  loading:atm
+});
 
 
 
